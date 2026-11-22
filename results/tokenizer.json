@@ -1,0 +1,26 @@
+[
+ {
+  "vocab": 259,
+  "bytes_per_token": 1.0
+ },
+ {
+  "vocab": 512,
+  "bytes_per_token": 2.398449307843645
+ },
+ {
+  "vocab": 1024,
+  "bytes_per_token": 3.149650376983119
+ },
+ {
+  "vocab": 2048,
+  "bytes_per_token": 3.650561517796875
+ },
+ {
+  "vocab": 4096,
+  "bytes_per_token": 3.9458655084442835
+ },
+ {
+  "vocab": 8192,
+  "bytes_per_token": 4.068292175605855
+ }
+]
