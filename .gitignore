@@ -1,0 +1,38 @@
+# Personal study material and assistant files (local only)
+/LEARNING.md
+/notes/
+/CLAUDE.md
+/CLAUDE.local.md
+/AGENTS.md
+/.claude/
+
+# Data, checkpoints and large artifacts
+/data/
+/checkpoints/
+*.pt
+*.pth
+*.safetensors
+*.bin
+*.npy
+*.npz
+*.parquet
+*.tar.gz
+
+# Python and tooling
+__pycache__/
+*.py[cod]
+*.egg-info/
+/build/
+/dist/
+.venv/
+.pytest_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Secrets, editors, OS
+.env
+.env.*
+kaggle.json
+.vscode/
+.idea/
+.DS_Store
