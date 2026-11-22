@@ -1,0 +1,35 @@
+{
+ "device": "cpu",
+ "rows": [
+  {
+   "new_tokens": 16,
+   "cache_bytes": 196608,
+   "cache": 1037.2911349485128,
+   "no_cache": 415.7644038243611
+  },
+  {
+   "new_tokens": 32,
+   "cache_bytes": 393216,
+   "cache": 1049.2376747681838,
+   "no_cache": 389.6904516961009
+  },
+  {
+   "new_tokens": 64,
+   "cache_bytes": 786432,
+   "cache": 1024.7576483470632,
+   "no_cache": 358.39634435865764
+  },
+  {
+   "new_tokens": 128,
+   "cache_bytes": 1572864,
+   "cache": 991.4356304847148,
+   "no_cache": 260.8619002742838
+  },
+  {
+   "new_tokens": 256,
+   "cache_bytes": 3145728,
+   "cache": 903.7352762757091,
+   "no_cache": 153.4367318093942
+  }
+ ]
+}

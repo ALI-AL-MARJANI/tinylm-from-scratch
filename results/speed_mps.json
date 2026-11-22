@@ -1,0 +1,35 @@
+{
+ "device": "mps",
+ "rows": [
+  {
+   "new_tokens": 16,
+   "cache_bytes": 196608,
+   "cache": 193.96839280853712,
+   "no_cache": 210.23988607505774
+  },
+  {
+   "new_tokens": 32,
+   "cache_bytes": 393216,
+   "cache": 236.69419689076992,
+   "no_cache": 209.34285107067717
+  },
+  {
+   "new_tokens": 64,
+   "cache_bytes": 786432,
+   "cache": 230.61224397466816,
+   "no_cache": 198.55525241830702
+  },
+  {
+   "new_tokens": 128,
+   "cache_bytes": 1572864,
+   "cache": 226.5913840400411,
+   "no_cache": 162.10657494181874
+  },
+  {
+   "new_tokens": 256,
+   "cache_bytes": 3145728,
+   "cache": 220.99009539754778,
+   "no_cache": 139.02523710568792
+  }
+ ]
+}
