@@ -83,3 +83,44 @@ def test_mps_matches_cpu():
     out_mps.logsumexp(-1).mean().backward()
     for p, q in zip(cpu.parameters(), mps.parameters()):
         assert torch.allclose(p.grad, q.grad.cpu(), atol=1e-4, rtol=1e-2)
+
+
+def test_sft_masks_prompt_and_padding():
+    # Why: a shifted mask trains on the instruction or never teaches the model to stop.
+    import numpy as np
+
+    from tinylm.train import get_batch
+
+    tokens = np.array([[9, 1, 2, 3, 4, 5, 9, 9]], dtype=np.uint16)  # prompt 0..2, answer 3..6
+    x, y = get_batch((tokens, np.array([[3, 7]], dtype=np.uint16)), 1, 7, (0, 0), "cpu")
+    assert x.tolist() == [[9, 1, 2, 3, 4, 5, 9]]
+    assert y.tolist() == [[-100, -100, 3, 4, 5, 9, -100]]
+
+
+def test_dpo_targets_and_loss():
+    # Why: before any update the loss must be ln 2, and only the answer may count.
+    from tinylm.post_train import dpo_loss, to_tensors
+
+    x, y = to_tensors([dict(prompt=[9, 1, 2], chosen=[3, 4, 9])], "chosen", 7)
+    assert x.tolist() == [[9, 1, 2, 3, 4, 0, 0]]
+    assert y.tolist() == [[-100, -100, 3, 4, 9, -100, -100]]
+    logp = torch.tensor([-100.0, -120.0])
+    loss, margin = dpo_loss(logp, logp, logp, logp, 0.1)
+    assert abs(loss.item() - math.log(2)) < 1e-6 and margin.abs().sum() == 0
+    better, _ = dpo_loss(logp + 5, logp - 5, logp, logp, 0.1)
+    assert abs(better.item() - math.log(1 + math.exp(-1))) < 1e-5
+
+
+def test_verifier():
+    # Why: the reward is the specification, and a model will exploit any hole in it.
+    from tinylm.eval import verify
+
+    words = ["dive", "job", "sorry"]
+    body = " ".join(f"word{chr(97 + i % 26)}{chr(97 + i // 26)}" for i in range(60))
+    good = f"He can dive. {body} It is his job. {body.replace('word', 'term')} He was sorry."
+    assert verify(words, good, True)["success"]
+    assert not verify(words, good, False)["proper_end"]
+    assert not verify(words, good.replace("dive", "diver"), True)["all_words"]
+    assert not verify(words, good[:-1], True)["proper_end"]
+    assert not verify(words, f"dive, job, sorry. {good}", True)["not_a_list"]
+    assert not verify(words, "He can dive. " + "fun fun fun. " * 40, True)["not_repetitive"]
