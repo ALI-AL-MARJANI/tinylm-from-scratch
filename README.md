@@ -195,15 +195,17 @@ This replays the saved demo in your terminal. It needs [uv](https://docs.astral.
 <details>
 <summary>Train everything again (pre-training and SFT alone took 5 h 47 min on a MacBook Air M4)</summary>
 
+The steps are: tests, data and tokenizers (about 2 GB on disk), pre-training, SFT, DPO, evaluation,
+ablations, then demo and figures. Of the two DPO learning rates, 1e-5 had the best validation
+success, so that is the one copied.
+
 ```bash
 uv run pytest -q
 
-# data and tokenizers (about 2 GB on disk)
 uv run python -m scripts.prepare_data --vocab 4096
 uv run python -m scripts.prepare_data --vocab 1024
 uv run python -m scripts.prepare_data --compression
 
-# pre-training, SFT, DPO
 uv run python -m tinylm.train --name base
 uv run python -m tinylm.train --name sft --stage sft --init checkpoints/base/step_20000.pt \
   --steps 4000 --lr 3e-4 --warmup 200 --eval_every 500 --save_at ""
@@ -211,11 +213,9 @@ mkdir -p checkpoints/dpo && cp checkpoints/sft/step_4000.pt checkpoints/sft/fina
 for lr in 1e-5 5e-5; do
   uv run python -m tinylm.post_train --init checkpoints/sft/final.pt --name dpo_lr$lr --lr $lr
 done
-# 1e-5 had the best validation success
 cp checkpoints/dpo_lr1e-5/best.pt checkpoints/dpo/final.pt
 cp results/dpo_lr1e-5.json results/dpo.json
 
-# evaluation
 evaluate() {
   uv run python -m tinylm.eval bpb --ckpt "$2" --out "results/bpb_$1.json"
   uv run python -m tinylm.eval follow --ckpt "$2" --out "results/follow_$1.json"
@@ -228,7 +228,6 @@ for device in mps cpu; do
     --out results/speed_$device.json
 done
 
-# ablations
 ablation() {
   name=$1; shift
   uv run python -m tinylm.train --name "$name" "$@" --d_model 128 --n_layers 4 --n_heads 4 \
@@ -241,7 +240,6 @@ for seed in 0 1 2; do
   ablation abl_v1024_s$seed --seed $seed --data data/v1024
 done
 
-# demo and figures
 uv run python -m scripts.make_demo
 uv run python -m scripts.plot
 ```
