@@ -1,0 +1,80 @@
+[
+ {
+  "stage": "pretrain",
+  "step": 0,
+  "text": "Once upon a timearn�oup any design smoke patRe park rolling nicelyire penguSue mysterious cube such turkeyAfter napkin ide cro din�arn chessolly napkin saw� saw bed tow people bed thing rare kne tow rare people such w cube cubeize same dirt like likeouse shySue friendshipilk�Hey finger chessolly bed likeron working safarl working gently saf wear dry better bed\".� necklace likearn wron stuff stuff dry sleadad cube suchventcleilk\u001filk better w cheese wize w cubecod knot�old by drySueSuearn wad punizeaff wheire rec gatearl such",
+  "title": "Pre-training: 0 steps"
+ },
+ {
+  "stage": "pretrain",
+  "step": 100,
+  "text": "Once upon a time very happy named time.\n.\"\n a to.\n for the loved to have. He, a theOnce it. Tim not the is, so. Lily the big the little, that nameds. happy,,. One with big., her to a big and help the big,!\" I, a ball. a little. to play a the the a big. Tim in Tim' I named, saw a day. He' Tim day. he the It the little.Once that theOnce went to the. not the time. The said a friends said, her a",
+  "title": "Pre-training: 100 steps"
+ },
+ {
+  "stage": "pretrain",
+  "step": 1000,
+  "text": "Once upon a time, there was a little girl named Amy. Amy loved to play outside. She would run, jump, and laugh. One day, Amy saw a big hole in the grass. She thought it would be fun to hide under it.\nAmy climbed higher and higher. She got hurt and started to meow her to find her mom. She thought, \"Mom, can I help you?\" Her mom looked at Amy and said, \"That's okay, but we can't find you.\"\nAmy went to the mom and asked for help. Her mom said, \"Let's",
+  "title": "Pre-training: 1,000 steps"
+ },
+ {
+  "stage": "pretrain",
+  "step": 3000,
+  "text": "Once upon a time, in a small village, there lived a little girl named Lily. She loved to taste everything. One day, she saw a big box in the kitchen. Lily felt very hungry. She wanted to find something tasty.\nLily asked her mom, \"Mom, where is salt?\" Her mom said, \"Maybe a salt is a good way to taste things.\" Lily was excited and said, \"Look, Mom, I found a big red pepper!\" Her mom said, \"Yes, Lily. That looks great.\"\nLily took the spicy pepper and tasted it all up. She was very happy",
+  "title": "Pre-training: 3,000 steps"
+ },
+ {
+  "stage": "pretrain",
+  "step": 10000,
+  "text": "Once upon a time, in a small house, there lived a boy named Tim. Tim loved to taste things. One day, he saw a big cake on the table. He wanted to taste the cake, but it was too high. Tim was sad.\nTim's mom saw him and said, \"Why are you sad, Tim?\" Tim said, \"I want the cake, but I can't reach it.\" Mom thought for a moment and said, \"Let's ask the cat to help us get the cake.\"\nSue and Tim asked the cat, \"Can we help you get the",
+  "title": "Pre-training: 10,000 steps"
+ },
+ {
+  "stage": "pretrain",
+  "step": 20000,
+  "text": "Once upon a time, in a small house, there lived a boy named Tim. Tim loved to taste new foods. One day, he found an old spoon in the kitchen. He thought it was a fun toy.\nTim used the old spoon to taste the yummy food. But he did not know that the spoon was very hard. When he tried to taste it, the spoon got stuck! Tim was scared and didn't know what to do.\nThen, Tim's mom came into the kitchen. She saw the spoon in the bowl and knew what to do. She said, \"Tim,",
+  "title": "Pre-training: 20,000 steps"
+ },
+ {
+  "stage": "sft",
+  "step": null,
+  "text": "Once upon a time, there was a girl named Lily. She had a big, red ball. One day, she went to the park with her friend, Tim. They wanted to play with the ball.\nAt the park, Lily and Tim played with the red ball. They laughed and had fun. But then, a big dog came to play with the ball. The dog was naughty and liked to bite things.\nThe dog bit Lily's ball and she fell down. Lily was sad. Tim saw what happened. He helped Lily stand up and hugged her tight. They played with the ball together and had a great day.",
+  "words": [
+   "hug",
+   "bin",
+   "delicious"
+  ],
+  "checks": {
+   "all_words": false,
+   "proper_end": true,
+   "long_enough": true,
+   "not_repetitive": true,
+   "not_a_list": true,
+   "words_found": 0,
+   "success": false
+  },
+  "title": "After SFT: use the words hug, bin, delicious",
+  "verdict": "verifier: 0/3 words, fail"
+ },
+ {
+  "stage": "dpo",
+  "step": null,
+  "text": "Once upon a time, there was a girl named Lily. She had a big bin. Lily loved to hug her bin. She liked to hug it so much that it made her feel happy.\nOne day, Lily's mom had made a delicious snack for her. Lily was so happy! She wanted to hug her bin a lot. But, she saw the bin again. It was dirty and smelly.\nLily's mom told her to give the bin to the people in the town. But Lily didn't want to give it to the town. She wanted her bin. So, she gave it a big hug. The bin became clean and shiny.\nLily was so happy. She hugged her bin and hugged it tight. Now, she could hug her bin and hug it every day. And she knew that she had done a good job.",
+  "words": [
+   "hug",
+   "bin",
+   "delicious"
+  ],
+  "checks": {
+   "all_words": true,
+   "proper_end": true,
+   "long_enough": true,
+   "not_repetitive": true,
+   "not_a_list": true,
+   "words_found": 3,
+   "success": true
+  },
+  "title": "After DPO: use the words hug, bin, delicious",
+  "verdict": "verifier: 3/3 words, pass"
+ }
+]
