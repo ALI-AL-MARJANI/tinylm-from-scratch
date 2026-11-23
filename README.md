@@ -1,13 +1,9 @@
 # tinylm-from-scratch
 
-<!-- VIDEO: record `uv run python -m scripts.make_demo --play`, drag the .mp4 into the GitHub editor,
-     then replace the GIF line below with the URL that GitHub gives you. -->
 ![The same model, writing stories at each stage of its training](results/demo.gif)
 
 > I built a small language model from zero: the tokenizer, the model and the training.
 > Then I taught it to follow simple orders, and measured each step.
-
-The model has 5.9M parameters. It is pure PyTorch, with no paid compute: everything ran on a MacBook Air M4.
 
 ## How it works
 
