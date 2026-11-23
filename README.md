@@ -1,9 +1,8 @@
 # TinyLm-from-scratch
 
-![The same model, writing stories at each stage of its training](results/demo.gif)
+### I built a small language model from zero: the tokenizer, the model and the training. Then I taught it to follow simple orders, and measured each step.
 
-> I built a small language model from zero: the tokenizer, the model and the training.
-> Then I taught it to follow simple orders, and measured each step.
+![The same model, writing stories at each stage of its training](results/demo.gif)
 
 ## How it works
 
