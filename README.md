@@ -1,4 +1,4 @@
-# tinylm-from-scratch
+# TinyLm-from-scratch
 
 ![The same model, writing stories at each stage of its training](results/demo.gif)
 
